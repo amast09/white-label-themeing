@@ -43,6 +43,7 @@ class ConnectedApp extends Component<PropsType> {
   render() {
     return (
       <div className="App">
+        <br/>
         <label>Primary Color: </label>
         <input type="text" value={this.props.theme.primaryColor} onChange={(e) => this.props.setThemePrimaryColor(e.target.value)}/>
         <br/>
