@@ -25,7 +25,7 @@ export const theme = (state: ThemeReducerStateType = defaultState, action: Theme
       };
     case "CLEAR_THEME":
       return defaultState;
-    default: (action: empty);
+    default: (action: empty); // eslint-disable-line no-unused-expressions
       return defaultState;
   }
 };

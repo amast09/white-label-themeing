@@ -6,24 +6,34 @@ import type {ThemeColorPaletteType} from "./types/ThemeColorPaletteType";
 import type {ReduxStoreStateType} from "./types/ReduxStoreStateType";
 import {themeColorPaletteSelector} from "./theme/ThemeSelectors";
 import {connect} from "react-redux";
-import {setTheme, setThemePrimaryColor, setThemeSecondaryColor} from "./theme/ThemeActions";
+import {
+  clearTheme,
+  setTheme,
+  setThemePrimaryColor,
+  setThemeSecondaryColor
+} from "./theme/ThemeActions";
+
+import type {
+  ClearThemeActionType,
+  SetThemeSecondaryColorActionType,
+  SetThemePrimaryColorActionType
+} from "./theme/ThemeActions";
+import ThemedHeader from "./ThemedHeader";
+import ThemedCard from "./ThemedCard";
 
 type PropsType = {
   themeColorPalette: ThemeColorPaletteType,
-  setTheme: ()
+  setTheme: (secondaryColor: string) => SetThemeSecondaryColorActionType,
+  setThemePrimaryColor: (primaryColor: string) => SetThemePrimaryColorActionType,
+  setThemeSecondaryColor: () => ClearThemeActionType
 };
 
 class ConnectedApp extends Component<PropsType> {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <ThemedHeader colorPalette={this.props.themeColorPalette}/>
+        <ThemedCard colorPalette={this.props.themeColorPalette}/>
       </div>
     );
   }
@@ -36,6 +46,7 @@ const mapStateToProps = (state: ReduxStoreStateType) => ({
 });
 
 const mapDispatchToProps = ({
+  clearTheme,
   setTheme,
   setThemePrimaryColor,
   setThemeSecondaryColor
