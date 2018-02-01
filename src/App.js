@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import tinycolor from "tinycolor2";
 import './App.css';
 import type {ThemeColorPaletteType} from "./types/ThemeColorPaletteType";
 import type {ReduxStoreStateType} from "./types/ReduxStoreStateType";
@@ -20,18 +20,39 @@ import type {
 } from "./theme/ThemeActions";
 import ThemedHeader from "./ThemedHeader";
 import ThemedCard from "./ThemedCard";
+import type {ThemeType} from "./types/ThemeType";
 
 type PropsType = {
+  theme: ThemeType,
   themeColorPalette: ThemeColorPaletteType,
-  setTheme: (secondaryColor: string) => SetThemeSecondaryColorActionType,
+  setTheme: (theme: ThemeType) => SetThemeSecondaryColorActionType,
   setThemePrimaryColor: (primaryColor: string) => SetThemePrimaryColorActionType,
   setThemeSecondaryColor: () => ClearThemeActionType
 };
 
 class ConnectedApp extends Component<PropsType> {
+
+  loadRandomTheme = () => {
+    setTimeout(() => {
+      const primaryColor = tinycolor.random().toHexString();
+      const secondaryColor = tinycolor.random().toHexString();
+      this.props.setTheme({primaryColor, secondaryColor});
+    }, 2000)
+  };
+
   render() {
     return (
       <div className="App">
+        <label>Primary Color: </label>
+        <input type="text" value={this.props.theme.primaryColor} onChange={(e) => this.props.setThemePrimaryColor(e.target.value)}/>
+        <br/>
+        <label>Secondary Color: </label>
+        <input type="text" value={this.props.theme.secondaryColor} onChange={(e) => this.props.setThemeSecondaryColor(e.target.value)}/>
+        <br/>
+        <button onClick={this.props.clearTheme}>Clear Theme</button>
+        <br/>
+        <button onClick={this.loadRandomTheme}>Load Random Theme</button>
+        <hr/>
         <ThemedHeader colorPalette={this.props.themeColorPalette}/>
         <ThemedCard colorPalette={this.props.themeColorPalette}/>
       </div>
@@ -39,9 +60,8 @@ class ConnectedApp extends Component<PropsType> {
   }
 }
 
-
-
 const mapStateToProps = (state: ReduxStoreStateType) => ({
+  "theme": state.theme,
   "themeColorPalette": themeColorPaletteSelector(state)
 });
 
