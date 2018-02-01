@@ -9,12 +9,7 @@ const defaultState: ThemeType = {
   "secondaryColor": "#BA9653"
 };
 
-const x: ThemeType = {
-  "primaryColor": "#foo",
-  "secondaryColor": "#bar"
-};
-
-export const Theme = (state: ThemeReducerStateType = defaultState, action: ThemeActionType) => {
+export const theme = (state: ThemeReducerStateType = defaultState, action: ThemeActionType) => {
   switch (action.type) {
     case "SET_THEME":
       return action.theme;

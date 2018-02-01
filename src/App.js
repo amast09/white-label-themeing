@@ -2,10 +2,18 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import type {ThemeColorPaletteType} from "./types/ThemeColorPaletteType";
+import type {ReduxStoreStateType} from "./types/ReduxStoreStateType";
+import {themeColorPaletteSelector} from "./theme/ThemeSelectors";
+import {connect} from "react-redux";
+import {setTheme, setThemePrimaryColor, setThemeSecondaryColor} from "./theme/ThemeActions";
 
-type UndefinedType = typeof undefined;
+type PropsType = {
+  themeColorPalette: ThemeColorPaletteType,
+  setTheme: ()
+};
 
-class App extends Component<UndefinedType> {
+class ConnectedApp extends Component<PropsType> {
   render() {
     return (
       <div className="App">
@@ -20,5 +28,19 @@ class App extends Component<UndefinedType> {
     );
   }
 }
+
+
+
+const mapStateToProps = (state: ReduxStoreStateType) => ({
+  "themeColorPalette": themeColorPaletteSelector(state)
+});
+
+const mapDispatchToProps = ({
+  setTheme,
+  setThemePrimaryColor,
+  setThemeSecondaryColor
+});
+
+const App = connect(mapStateToProps, mapDispatchToProps)(ConnectedApp);
 
 export default App;

@@ -1,5 +1,5 @@
 // @flow
-import {Theme} from "./ThemeReducer";
+import {theme} from "./ThemeReducer";
 import type {ThemeType} from "../types/ThemeType";
 import type {
   SetThemeActionType,
@@ -19,14 +19,14 @@ const newTheme: ThemeType = Object.freeze({
   "secondaryColor": "#C8102E"
 });
 
-describe("Theme Reducer", () => {
+describe("theme Reducer", () => {
   describe("undefined state", () => {
     it("should return the default theme", () => {
       const initialState = undefined;
       const action: ClearThemeActionType = {"type": "CLEAR_THEME"};
       const expectedNextState: ThemeReducerStateType = defaultState;
 
-      expect(Theme(initialState, action)).toEqual(expectedNextState);
+      expect(theme(initialState, action)).toEqual(expectedNextState);
     });
   });
 
@@ -36,7 +36,7 @@ describe("Theme Reducer", () => {
       const action: SetThemeActionType = {"type": "SET_THEME", theme: newTheme};
       const expectedNextState: ThemeReducerStateType = newTheme;
 
-      expect(Theme(initialState, action)).toEqual(expectedNextState);
+      expect(theme(initialState, action)).toEqual(expectedNextState);
     });
   });
 
@@ -52,7 +52,7 @@ describe("Theme Reducer", () => {
         "primaryColor": action.primaryColor
       };
 
-      expect(Theme(initialState, action)).toEqual(expectedNextState);
+      expect(theme(initialState, action)).toEqual(expectedNextState);
     });
   });
 
@@ -68,7 +68,7 @@ describe("Theme Reducer", () => {
         "secondaryColor": action.secondaryColor
       };
 
-      expect(Theme(initialState, action)).toEqual(expectedNextState);
+      expect(theme(initialState, action)).toEqual(expectedNextState);
     });
   });
 
@@ -79,7 +79,7 @@ describe("Theme Reducer", () => {
       const action: ClearThemeActionType = {"type": "CLEAR_THEME"};
       const expectedNextState: ThemeReducerStateType = defaultState;
 
-      expect(Theme(initialState, action)).toEqual(expectedNextState);
+      expect(theme(initialState, action)).toEqual(expectedNextState);
     });
   });
 });
