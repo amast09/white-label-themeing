@@ -50,6 +50,7 @@ class ConnectedApp extends Component<PropsType> {
         <label>Secondary Color: </label>
         <input type="text" value={this.props.theme.secondaryColor} onChange={(e) => this.props.setThemeSecondaryColor(e.target.value)}/>
         <br/>
+        <br/>
         <button onClick={this.props.clearTheme}>Clear Theme</button>
         <br/>
         <button onClick={this.loadRandomTheme}>Load Random Theme</button>
