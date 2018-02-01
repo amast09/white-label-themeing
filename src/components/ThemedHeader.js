@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import type {ThemeColorPaletteType} from "./types/ThemeColorPaletteType";
+import type {ThemeColorPaletteType} from "../types/ThemeColorPaletteType";
 
 type ThemedHeaderPropsType = {
   colorPalette: ThemeColorPaletteType

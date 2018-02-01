@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react';
 import tinycolor from "tinycolor2";
-import './App.css';
 import type {ThemeColorPaletteType} from "./types/ThemeColorPaletteType";
 import type {ReduxStoreStateType} from "./types/ReduxStoreStateType";
 import {themeColorPaletteSelector} from "./theme/ThemeSelectors";
@@ -18,16 +17,17 @@ import type {
   SetThemeSecondaryColorActionType,
   SetThemePrimaryColorActionType
 } from "./theme/ThemeActions";
-import ThemedHeader from "./ThemedHeader";
-import ThemedCard from "./ThemedCard";
+import ThemedHeader from "./components/ThemedHeader";
+import ThemedCard from "./components/ThemedCard";
 import type {ThemeType} from "./types/ThemeType";
 
 type PropsType = {
   theme: ThemeType,
   themeColorPalette: ThemeColorPaletteType,
+  clearTheme: () => ClearThemeActionType,
   setTheme: (theme: ThemeType) => SetThemeSecondaryColorActionType,
   setThemePrimaryColor: (primaryColor: string) => SetThemePrimaryColorActionType,
-  setThemeSecondaryColor: () => ClearThemeActionType
+  setThemeSecondaryColor: (secondaryColor: string) => SetThemeSecondaryColorActionType
 };
 
 class ConnectedApp extends Component<PropsType> {
