@@ -54,7 +54,7 @@ class ConnectedApp extends Component<PropsType> {
         <button onClick={this.props.clearTheme}>Clear Theme</button>
         <br/>
         <button onClick={this.loadRandomTheme}>Load Random Theme</button>
-        <hr/>
+        <br/>
         <ThemedHeader colorPalette={this.props.themeColorPalette}/>
         <ThemedCard colorPalette={this.props.themeColorPalette}/>
       </div>
