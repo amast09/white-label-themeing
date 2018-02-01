@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import {createProvider as Provider} from "react-redux";
+import ReduxStore from "./ReduxStore";
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+ReactDOM.render(<Provider store={ReduxStore}><App /></Provider>, document.getElementById('root'));
